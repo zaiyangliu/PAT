@@ -1,0 +1,34 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<cstring>
+using namespace std;
+
+struct Student{
+  string name;
+  string num;
+  int score;
+};
+bool cmp1(Student a, Student b){
+  return a.score > b.score;
+}
+bool cmp2(Student a, Student b){
+  return a.score < b.score;
+}
+int main(){
+  int n;
+  cin >> n;
+  vector<Student> Vstudent;
+  while(n--){
+    Student s;
+    cin >> s.name >> s.num >> s.score;
+    Vstudent.push_back(s);
+  }
+  sort(Vstudent.begin(), Vstudent.end(), cmp1);
+  cout << Vstudent[0].name << " " << Vstudent[0].num << endl;
+  sort(Vstudent.begin(), Vstudent.end(),cmp2);
+  cout << Vstudent[0].name << " " << Vstudent[0].num << endl;//没必要排序两次，一次即可！
+  return 0;
+  
+  
+}
