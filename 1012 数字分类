@@ -1,0 +1,38 @@
+#include<cstdio>   //需要考察的细节很多，很容易出错！
+using namespace std;
+int main(){
+  int N;
+  int a[1001];
+  int sum1 =0, sum2 = 0,  count3 = 0, count4 = 0, max = 0, t = 0;
+  double aver, sum4 = 0;
+  int flag = 1;
+  scanf("%d", &N);
+  for(int i = 0; i < N; ++i){
+    scanf("%d", &a[i]);
+    if(a[i]%5 == 0 && a[i]%2 ==0) sum1 += a[i];
+    if(a[i]%5 == 1){
+      t++;
+      sum2 = sum2 + a[i]*flag;
+      flag = flag*(-1);
+    }
+    if(a[i]%5 == 2) count3++;
+    if(a[i]%5 == 3){
+      sum4 += a[i];
+      count4++;
+    }
+  if(a[i]%5 == 4 && a[i] > max) max = a[i];
+  }
+  //aver = sum4/count4;
+  if(sum1 == 0) printf("N ");
+  else printf("%d ", sum1);
+  if(t == 0) printf("N ");
+  else printf("%d ", sum2);
+  if(count3 == 0) printf("N ");
+  else printf("%d ", count3);
+  if(count4 == 0) printf("N ");
+  else printf("%.1f ", sum4/count4);
+  if(max == 0) printf("N");
+  else printf("%d", max);
+  
+  return 0;
+}
