@@ -1,0 +1,63 @@
+#include<cstdio>
+#include<iostream>
+#include<cmath>
+#include<algorithm>
+#include<vector>
+#include<cstring>
+using namespace std;
+int N, L, H;
+struct Student{
+  char id[10];
+  int de;
+  int cai;
+  int sum;
+};
+bool cmp(Student &a, Student &b){
+  if(a.sum == b.sum){
+    if(a.de == b.de){
+      return strcmp(a.id, b.id) < 0;
+    }
+    else
+      return a.de > b.de;
+  }
+ else
+    return a.sum > b.sum;
+    
+  
+}
+int main(){
+  Student st;
+  vector<Student> Vs1, Vs2, Vs3,Vs4;
+  cin >> N >> L >> H;
+  for(int i = 0; i < N; ++i){
+    scanf("%s%d%d", &st.id,&st.de, &st.cai); 
+    st.sum = st.de + st.cai;
+    if(st.de >= L && st.cai >= L){
+     if(st.de >= H && st.cai >= H)
+      Vs1.push_back(st);
+     else if(st.de >= H && st.cai < H) Vs2.push_back(st);
+     else if(st.de < H && st.cai < H && st.de >= st.cai) Vs3.push_back(st);
+     else Vs4.push_back(st);
+    }
+  }
+  sort(Vs1.begin(), Vs1.end(), cmp);
+  sort(Vs2.begin(), Vs2.end(), cmp);
+  sort(Vs3.begin(), Vs3.end(), cmp);
+  sort(Vs4.begin(), Vs4.end(), cmp);
+  int cnt;
+  cnt = Vs1.size() + Vs2.size() + Vs3.size() + Vs4.size();
+  cout << cnt << endl;
+  for(int i = 0; i < Vs1.size(); ++i){
+    cout << Vs1[i].id << " " << Vs1[i].de << " " << Vs1[i].cai << endl;
+  }
+  for(int i = 0; i < Vs2.size(); ++i){
+    cout << Vs2[i].id << " " << Vs2[i].de << " " << Vs2[i].cai << endl;
+  }
+  for(int i = 0; i < Vs3.size(); ++i){
+    cout << Vs3[i].id << " " << Vs3[i].de << " " << Vs3[i].cai << endl;
+  }
+  for(int i = 0; i < Vs4.size(); ++i){
+    cout << Vs4[i].id << " " << Vs4[i].de << " " << Vs4[i].cai << endl;
+  }
+  return 0;
+}
