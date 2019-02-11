@@ -1,0 +1,36 @@
+#include<cstdio>
+#include<vector>
+#include<cmath>
+using namespace std;
+bool isPrime(int n){
+  if( n == 2)
+    return true;
+  for(int i = 2; i <= sqrt(n); ++i){
+    if(n % i == 0)
+      return false;
+  }
+  return true;
+}
+
+int main(){
+  int M,  N;
+  int num = 0;
+  vector<int> V;
+  scanf("%d%d", &M, &N);
+  for(int i = 2; ; ++i){
+    if(isPrime(i)){
+      num++;
+      V.push_back(i);
+    }
+    if(num == N)
+      break;
+  }
+  for(int i = M; i < N; ++i){
+    printf("%d", V[i-1]);
+    if((i-M+1) % 10 != 0)
+      printf(" ");
+    if((i-M+1)%10 == 0)
+      printf("\n");
+  }
+  printf("%d", V[N-1]); //最后一行最后不能有空格，很麻烦的处理方式！
+}
