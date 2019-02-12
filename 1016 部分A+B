@@ -1,0 +1,36 @@
+#include<cstdio>
+#include<iostream>
+#include<cstring>
+#include<cmath>
+using namespace std;
+int main(){
+  int pa=0, pb=0;
+  string s1, s2;
+  char c1, c2;
+  cin >> s1 >> c1 >> s2 >> c2;
+  int len1 = s1.length();
+  int len2 = s2.length();
+  int sum1 = 0;
+  int sum2 = 0;
+  for(int i = 0; i < len1; ++i){
+    if(s1[i] == c1)
+      sum1++;
+  }
+  for(int i = 0; i < len2; ++i){
+    if(s2[i] == c2)
+      sum2++;
+  }
+  int num1 = c1 - '0';
+  int num2 = c2 - '0';
+  while(sum1){
+    pa += num1*pow(10.0,sum1-1 ); //这个问题很麻烦n，不知道有没有别的处理方式！
+    sum1--;
+    
+  }
+  while(sum2){
+    pb += num2*pow(10.0, sum2 - 1);
+    sum2--;
+  }
+  cout << pa + pb;
+  return 0;
+}
