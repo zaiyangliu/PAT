@@ -1,0 +1,77 @@
+#include<cstdio> //敢问有没有简便方法，写起来好麻烦！
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main(){
+  int N;
+  int a1[7] = {0};
+  int b1[7] = {0};
+  scanf("%d", &N);
+  while(N--){
+    char a, b;
+    //scanf("%c%c", &a, &b);
+    cin >> a >> b;
+    if(a == 'C' && b == 'C'){
+      a1[1]++;
+      b1[1]++;
+    }
+    else if(a == 'C' && b == 'J'){
+      a1[0]++;
+      a1[3]++;
+      b1[2]++;
+    }
+    else if(a == 'C' && b == 'B'){
+      a1[2]++;
+      b1[0]++;
+      b1[5]++;
+    }
+    else if(a == 'J' && b == 'J'){
+      a1[1]++;
+      b1[1]++;
+    }
+    else if(a == 'J' && b == 'B'){
+      a1[0]++;
+      a1[4]++;
+      b1[2]++;
+    }
+    else if(a == 'J' && b == 'C'){
+      a1[2]++;
+      b1[0]++;
+      b1[3]++;
+    }
+    else if(a == 'B' && b == 'B'){
+      a1[1]++;
+      b1[1]++;
+    }
+    else if(a == 'B' && b == 'C'){
+      a1[0]++;
+      a1[5]++;
+      b1[2]++;
+    }
+    else if(a == 'B' && b == 'J'){
+      a1[2]++;
+      b1[0]++;
+      b1[4]++;
+    }
+
+  }
+  printf("%d ", a1[0]);
+  printf("%d ", a1[1]);
+  printf("%d\n", a1[2]);
+  printf("%d ", b1[0]);
+  printf("%d ", b1[1]);
+  printf("%d\n", b1[2]);
+  if(a1[3] >= a1[4] && a1[3] > a1[5])
+    printf("C ");
+  if(a1[4] > a1[3] && a1[4] > a1[5])
+    printf("J ");
+  if(a1[5] >= a1[3] && a1[5] >= a1[4])
+    printf("B ");
+  if(b1[3] >= b1[4] && b1[3] > b1[5])
+    printf("C");
+  if(b1[4] > b1[3] && b1[4] > b1[5])
+    printf("J");
+  if(b1[5] >= b1[3] && b1[5] >= b1[4])
+    printf("B");
+  return 0;
+}
