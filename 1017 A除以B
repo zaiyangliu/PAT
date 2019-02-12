@@ -1,0 +1,21 @@
+#include<iostream> //数字taid啊yao shou东moni
+#include<string>
+using namespace std;
+
+int main() {
+    string s;
+    int d,div,mod;
+    cin >> s>>d;
+    int len = s.length();
+    div = (s[0] - '0') / d;
+    mod = (s[0] - '0') % d;
+    if ( div != 0 || len == 1) 
+        cout << div;    
+    for (int i = 1; i < len; i++) {
+        div = (mod * 10 + (s[i] - '0')) / d;
+        cout << div;
+        mod = (mod * 10 + (s[i] - '0')) % d;
+    }
+    cout << ' ' << mod << endl;
+    return 0;
+}
