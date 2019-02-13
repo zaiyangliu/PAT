@@ -1,0 +1,39 @@
+#include<cstdio>
+#include<iostream>
+#include<algorithm>
+using namespace std;
+struct yuebing{
+  double kucun;
+  double zongshoujia;
+  double price;
+};
+bool cmp(struct yuebing a, struct yuebing b){
+  return a.price > b.price;
+}
+int main(){
+  yuebing I[10000];
+  int N;
+  double sum;
+  double profit =0;
+  scanf("%d%lf", &N, &sum);
+  for(int i = 0; i < N; ++i){
+    scanf("%lf", &I[i].kucun);
+  }
+  for(int i = 0; i < N; ++i){
+    scanf("%lf", &I[i].zongshoujia);
+    I[i].price = I[i].zongshoujia / I[i].kucun;
+  }
+  sort(I, I+N, cmp);
+  for(int i = 0; i < N; ++i){
+    if(I[i].kucun <= sum){
+      profit = profit + I[i].zongshoujia;
+      sum = sum - I[i].kucun;
+    }
+    else{
+      profit += I[i].price * sum;
+      break; //刚开始做 少了break，导致才得十分，要主要思考为什么！
+    }
+  }
+  printf("%.2f", profit);
+  return 0;
+}
