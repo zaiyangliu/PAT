@@ -1,0 +1,42 @@
+#include<iostream>  //比较好理解的一种方法！
+#include<stdlib.h>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    int start, N, K;//起始节点地址，总结点个数，反转的节点个数
+    cin >> start >> N >> K;
+    /*初始化数据*/
+    int data[100000];//记录对应地址的数据
+    int next[100000];//存储下一节点的地址
+    int list[100000];//表现节点间的先后次序
+    for (int i = 0; i < N; i++)
+    {
+        int address;
+        cin >> address;
+        cin >> data[address] >> next[address];
+    }
+    /*将节点按照先后顺序排列*/
+    int sum = 0;//
+    for (int i = 0; start != -1; i++)
+    {
+        list[i] = start;
+        start = next[start];
+        sum++;
+    }
+    /*反转*/
+    for (int i = 0; i < sum / K; i++)
+    {
+        reverse(list + i * K, list + (i + 1) * K);
+    }
+    /*输出*/
+    for (int i = 0; i < sum; i++)
+    {
+        if (i == sum - 1)
+            printf("%05d %d -1\n", list[i], data[list[i]]);
+        else
+            printf("%05d %d %05d\n", list[i], data[list[i]], list[i + 1]);
+    }
+    system("pause");
+    return 0;
+}
