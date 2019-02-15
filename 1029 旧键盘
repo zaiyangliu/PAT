@@ -1,0 +1,13 @@
+#include<iostream> //利用STl降低了思维的难度！
+#include<cctype>
+using namespace std;
+int main(){
+  string s1, s2, ans;
+  cin >> s1 >> s2;
+  int len = s1.length();
+  for(int i = 0; i < len; ++i){
+    if(s2.find(s1[i]) == string::npos && ans.find(toupper(s1[i])) == string::npos)
+      ans += toupper(s1[i]);
+  }
+  cout << ans;
+}
