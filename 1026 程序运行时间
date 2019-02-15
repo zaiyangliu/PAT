@@ -1,0 +1,19 @@
+#include<cstdio>
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){
+  int c1, c2;
+  scanf("%d%d", &c1, &c2);
+  int h, m, t;
+  int temp = round((c2-c1)*1.0/100);
+  h = temp/3600;
+  temp = temp%3600;
+  m = temp/60;
+  temp = temp%60;
+  t = temp;
+  printf("%02d:%02d:%02d", h, m, t);
+  
+  return 0;
+  
+}
