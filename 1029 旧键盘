@@ -11,3 +11,41 @@ int main(){
   }
   cout << ans;
 }
+//第二种方法！注意绕过gets，因为pat中不能用gets函数
+#include<cstdio>
+#include<cstring>
+#include<iostream>
+using namespace std;
+int main(){
+  char str1[100], str2[100];
+  bool hashTable[128] = {false};
+  // gets(str1);
+  //gets(str2);
+  string s1, s2;
+  cin >> s1 >> s2;
+  for(int i = 0; i < s1.length(); i++){
+    str1[i] = s1[i];
+  }
+  for(int i = 0; i < s2.length(); i++){
+    str2[i] = s2[i];
+  }
+
+  int len1 = s1.length();  //一种解决pat不能用gets的方法！！！
+  int len2 = s2.length();
+  for(int i = 0; i < len1; ++i){
+    int j;
+    char c1, c2;
+    for(j = 0; j < len2; j++){
+      c1 = str1[i];
+      c2 = str2[j];
+      if(c1 >= 'a' && c1 <= 'z') c1 -= 32;
+      if(c2 >= 'a' && c2 <='z') c2 -= 32;
+      if(c1 == c2) break;
+    }
+    if(j == len2 && hashTable[c1] == false){
+      printf("%c", c1);
+      hashTable[c1] = true;
+    }
+  }
+  return 0;
+}
