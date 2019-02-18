@@ -20,3 +20,27 @@ int main(){
   printf("%d %d", k, max);
   return 0;
 }
+//第二种方法，为什么用map的时间反而更长呢？
+#include<cstdio>
+#include<map>
+using namespace std;
+int main(){
+  int N;
+  int max = 0;
+  map<int, int> mymp;
+  scanf("%d", &N);
+  while(N--){
+    int a, b;
+    scanf("%d %d", &a, &b);
+    mymp[a] += b;
+  }
+  int k;
+  for(map<int, int>::iterator it = mymp.begin(); it != mymp.end(); ++it){
+    if(it -> second > max){
+      max = it->second;
+      k = it->first;
+    }
+  }
+  printf("%d %d", k, max);
+  return 0;
+}
