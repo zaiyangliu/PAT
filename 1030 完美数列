@@ -1,0 +1,28 @@
+#include<cstdio>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main(){
+  long long N, p;
+  int i, j;
+  vector<int> Vnum;
+  scanf("%ld%ld", &N, &p);
+  for(int i = 0; i < N; ++i){
+    int temp;
+    scanf("%d", &temp);
+    Vnum.push_back(temp);
+  }
+
+	sort(Vnum.begin(),Vnum.end());
+  int max_len = 1;
+  for(i = 0; i < N; ++i){
+    for(j = i + max_len; j < N; ++j){
+      if(Vnum[i]*p >= Vnum[j]){
+        max_len = j - i + 1;
+      }
+      else break;
+    }
+  }
+  printf("%ld", max_len);
+  return 0;
+}
