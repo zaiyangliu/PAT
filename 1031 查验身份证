@@ -25,3 +25,34 @@ int main(){
   if(allpassed) cout << "All passed";
   return 0;
 }
+
+//如下解决了1分问题
+#include<cstdio>
+#include<string>
+#include<iostream>
+using namespace std;
+int main(){
+  int n;
+  cin >> n;
+  int weigth[20] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+  char z_m[15] = {'1','0','X','9','8','7','6','5','4','3','2'}; 
+  int allpassed = 1;
+  string s;
+  while(n--){
+    int sum = 0;
+    cin >> s;
+    int i;
+    for( i = 0; i < 17; ++i){
+      if(s[i] < '0' || s[i] > '9') break;
+       sum += (s[i] - '0')*weigth[i];
+    }
+    if(i < 17){
+      allpassed = 0;
+      cout << s << endl;
+    }
+    else if(z_m[sum%11] != s[17]) { allpassed = 0;cout << s << endl;}
+    
+  }
+  if(allpassed) cout << "All passed";
+  return 0;
+}
