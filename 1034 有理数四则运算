@@ -1,0 +1,96 @@
+#include<cstdio>
+#include<iostream>
+#include<cmath>
+#include<algorithm>
+using namespace std;
+struct fraction{
+  long long  up, down;
+};
+long long  gcd(long long a, long long b){
+  return b == 0 ? a : gcd(b, a%b);
+}
+fraction deduction(fraction a){
+  if(a.down < 0){
+    a.up = - a.up;
+    a.down = -a.down;
+  }
+  if(a.up == 0) a.down = 1;
+  else{
+    int temp = gcd(abs(a.up), abs(a.down));
+    a.up = a.up / temp;
+    a.down = a.down / temp;
+  }
+  return a;
+}
+fraction add(fraction a, fraction b){
+  fraction c;
+  c.up = a.up*b.down + b.up*a.down;
+  c.down = a.down*b.down;
+  return deduction(c);
+}
+fraction minu(fraction a, fraction b){
+  fraction c;
+  c.up = a.up*b.down - b.up*a.down;
+  c.down = a.down*b.down;
+  return deduction(c);
+}
+fraction multi(fraction a, fraction b){
+  fraction c;
+  c.up = a.up*b.up;
+  c.down = a.down*b.down;
+  return deduction(c);
+}
+fraction divi(fraction a, fraction b){
+  fraction c;
+  c.up = a.up*b.down;
+  c.down = a.down*b.up;
+  return fraction(c);
+}
+void show(fraction a){
+   a = deduction(a);
+   if(a.up < 0) printf("(");
+   if(a.down == 1) printf("%lld", a.up);
+   else if(abs(a.up) > a.down){
+    printf("%lld %lld/%lld", a.up/a.down, abs(a.up) % a.down, a.down);
+   }
+   else{
+    printf("%lld/%lld", a.up, a.down);
+   }
+   if(a.up <0) printf(")");
+}
+int main(){
+  long long a, b, c, d;
+  scanf("%lld/%lld %lld/%lld", &a, &b ,&c ,&d);
+  fraction m, n;
+  m.up = a;
+  m.down = b;
+  n.up = c;
+  n.down = d;
+  show(m);
+  printf(" + ");
+  show(n);
+  printf(" = ");
+  show(add(m, n));
+  printf("\n");
+  show(m);
+  printf(" - ");
+  show(n);
+  printf(" = ");
+  show(minu(m, n));
+  printf("\n");
+  show(m);
+  printf(" * ");
+  show(n);
+  printf(" = ");
+  show(multi(m, n));
+  printf("\n");
+  show(m);
+  printf(" / ");
+  show(n);
+  printf(" = ");
+  if(n.up == 0) printf("Inf");
+  else show(divi(m, n));
+  printf("\n");
+  return 0;
+
+}
