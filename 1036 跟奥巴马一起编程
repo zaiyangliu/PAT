@@ -1,0 +1,27 @@
+#include<cstdio>
+#include<cmath>
+#include<iostream>
+using namespace std;
+int main(){
+  int n;
+  char a;
+  cin >> n >> a;
+  int row;
+  row = round(n*1.0/2);
+  for(int i = 0; i < n; ++i){
+    printf("%c", a);
+  }
+  printf("\n");
+  int temp = row - 2;
+  while(temp--){
+    printf("%c", a);
+    for(int i = 0; i < n - 2; ++i){
+      printf(" ");
+    }
+    printf("%c\n", a);
+  }
+  for(int i = 0; i < n; ++i){
+    printf("%c", a);
+  }
+  return 0;
+}
