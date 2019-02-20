@@ -1,0 +1,18 @@
+#include<cstdio> //思路转换成最小单位，进行加减，然后再换回去！
+#include<cmath>
+using namespace std;
+int main(){
+  int a, b, c;
+  int P, A;
+  scanf("%d.%d.%d", &a, &b, &c);
+  P = a*17*29 + b*29 + c;
+  scanf("%d.%d.%d", &a, &b, &c);
+  A = a*17*29 + b*29 + c;
+  if(P > A) printf("-");
+  int temp = abs(P-A);
+  printf("%d.", temp/(29*17));
+  temp = temp%(29*17);
+  printf("%d.", temp/29);
+  printf("%d", temp%29);
+  return 0;
+}
