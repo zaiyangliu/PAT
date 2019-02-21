@@ -1,0 +1,33 @@
+#include<iostream>  //利用map和struct费了好大劲，主要是两字母相等时要输出按照字典顺序小的那个字母导致问题复杂了！要学习别人的简便解法
+#include<cstdio>
+#include<map>
+#include<cctype>
+using namespace std;
+struct ans{
+  int sum = 0;
+  char c = 'z';
+}ans;
+int main(){
+  string s;
+  getline(cin, s);
+  map<char, int> mp;
+  int len = s.length();
+  for(int i = 0; i < len; ++i){
+    if((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')) mp[tolower(s[i])]++;
+  }
+  int Max = 0;
+  for(int i = 0; i < len; ++i){
+    if((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')){
+      if(mp[tolower(s[i])] > ans.sum) {
+        ans.sum = mp[tolower(s[i])];
+        ans.c = tolower(s[i]);
+      }
+      if(mp[tolower(s[i])] == ans.sum && tolower(s[i]) < ans.c){
+        ans.sum = mp[tolower(s[i])];
+        ans.c = tolower(s[i]); 
+      }
+    }
+  }
+  printf("%c %d\n", ans.c, ans.sum);
+  return 0;
+}
