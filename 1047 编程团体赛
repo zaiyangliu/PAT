@@ -1,0 +1,24 @@
+#include<cstdio>//用map容易理解，也可以用数组实现散列的功能！
+#include<iostream>
+#include<map>
+using namespace std;
+int main(){
+  int n;
+  int Max = 0;
+  int ans_num;
+  map<int, int> mp;
+  scanf("%d", &n);
+  int team, number, score;
+  for(int i = 0; i < n; ++i){
+    scanf("%d-%d %d", &team, &number, &score);
+    mp[team] += score;
+  }
+  for(map<int, int>::iterator it = mp.begin(); it != mp.end(); ++it){
+    if(it->second > Max){
+      Max = it->second;
+      ans_num = it->first;
+    }
+  }
+  printf("%d %d", ans_num, Max);
+  return 0;
+}
