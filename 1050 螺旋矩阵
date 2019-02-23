@@ -1,0 +1,62 @@
+#include<cstdio> //为什么是24分，有一个数据没通过！
+#include<algorithm>
+#include<cmath>
+using namespace std;
+const int Max = 10010;
+int a[Max];
+int matrix[Max][Max];
+bool cmp(int a, int b){
+  return a >= b;
+}
+int main(){
+  int N;
+  scanf("%d", &N);
+  for(int i = 0; i < N; ++i){
+    scanf("%d", &a[i]);
+  }
+  if(N == 1){
+    printf("%d\n", a[0]);
+    return 0;
+  }
+  sort(a, a + N, cmp);
+  int row = (int)ceil(sqrt(1.0*N));
+  while(N % row != 0){
+    row++;
+  }
+  int col = N / row;
+  int i =0 , j = 0, now = 0;
+  int U = 0, D = row - 1, L = 0, R = col - 1;
+  while(now < N ){
+    while(now < N  && j < R){
+      matrix[i][j] = a[now++];
+      j++;
+    }
+    while(now < N  && i < D){
+      matrix[i][j] = a[now++];
+      i++;
+    }
+    while(now < N  && j > L){
+      matrix[i][j] = a[now++];
+      j--;
+    }
+    while(now < N  && i > U){
+      matrix[i][j] = a[now++];
+      i--;
+    }
+    U++, D--, L++, R--;
+    i++, j++;
+    if(now == N - 1){
+      matrix[i][j] = a[now++];
+    }
+  }
+  for(int x = 0; x < row; ++x){
+    for(int y = 0; y < col; ++y){
+      printf("%d", matrix[x][y]);
+     if(y < col - 1) printf(" ");
+     else  printf("\n");
+    }
+   
+  }
+  return 0;
+
+}
