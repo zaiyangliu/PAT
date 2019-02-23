@@ -1,0 +1,15 @@
+#include<cstdio>
+#include<cmath>
+int main(){
+  double r1, p1, r2, p2;
+  scanf("%lf%lf%lf%lf", &r1, &p1, &r2, &p2);
+  double r = r1 * r2;
+  double p = p1 + p2;
+  double m = r * cos(p);
+  double n = r * sin(p);
+  if(fabs(m) < 0.01) m = 0;//这个点很难想到啊！
+  if(fabs(n) < 0.01) n = 0;
+  if(n >= 0) printf("%.2f+%.2fi", m, n);
+  else if(n < 0) printf("%.2f-%.2fi", m, fabs(n));
+  return 0;
+}
