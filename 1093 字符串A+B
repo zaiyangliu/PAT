@@ -1,0 +1,30 @@
+#include<cstdio>
+#include<map>
+#include<string>
+#include<iostream>
+using namespace std;
+int main(){
+  string s1, s2;
+  getline(cin, s1);
+  getline(cin, s2);
+  map<char, bool> mp;
+  string s;
+  int len1 = s1.length();
+  int len2 = s2.length();
+  for(int i = 0; i < len1; i++){
+    if(mp[s1[i]] == true) continue;
+    else {
+      s += s1[i];
+      mp[s1[i]] = true;
+    }
+  }
+  for(int i = 0; i < len2; ++i){
+    if(mp[s2[i]] == true) continue;
+    else {
+      s += s2[i];
+      mp[s2[i]] = true;
+    }
+  }
+  cout << s;
+  return 0;
+}
