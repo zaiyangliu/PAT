@@ -1,0 +1,38 @@
+#include<cstdio>
+#include<algorithm>
+#include<vector>
+using namespace std;
+int main(){
+  int N, M;
+  int a[1010] = {0};
+  scanf("%d%d", &N, &M);
+  for(int i = 0; i < M; ++i){
+    for(int j = 1; j <= N; ++j){
+      int temp;
+      scanf("%d", &temp);
+      a[j] += temp;
+    }
+  }
+ int Max = -1, k;
+ vector<int> vs;
+ for(int i = 1; i <= N; ++i){
+   if(a[i] > Max){
+     Max = a[i];
+     k = i;
+   }
+  }
+ for(int i = 1; i <= N; ++i){
+   if(a[i] == Max && i != k){
+     vs.push_back(i);
+   }
+ }
+ printf("%d\n", Max);
+ printf("%d", k);
+ int len = vs.size();
+ for(int i = 0; i < len; ++i){
+   printf(" %d", vs[i]);
+ }
+ printf("\n");
+ return 0;
+  
+}
