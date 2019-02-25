@@ -1,0 +1,54 @@
+#include<map>
+#include<iostream>
+#include<cstdio>
+#include<string>
+#include<cmath>
+#include<set>
+using namespace std;
+bool isprime(int n){
+  if(n == 0 || n == 1) return false;
+  //if(n == 2) return true;
+  for(int i = 2; i <= sqrt((double)n); ++i){
+    if(n % i == 0){
+      return false;
+    }
+  }
+  return true;
+}
+int main(){
+  int n;
+  cin >> n;
+  map<string, int> mp;
+  set<string> pand;
+  for(int i = 1; i <= n; ++i){
+    string s;
+    cin >> s;
+    mp[s] = i;
+  }
+  int m;
+  cin >> m;
+  //int cnt[10010] = {0};
+  int i;
+  for( i = 0; i < m; ++i){
+    string stemp;
+    cin >> stemp;
+    map<string, int>::iterator it;
+    it = mp.find(stemp);
+    if(it == mp.end()){
+      cout << stemp << ": " << "Are you kidding?" << endl;
+    }
+    else if(it != mp.end()){
+      
+      if(pand.find(stemp) == pand.end()) pand.insert(stemp);
+      else {cout << stemp << ": " << "Checked" << endl; continue;}//加个continue 就从3分变成20分，要注意！！！
+      if(mp[stemp] == 1) cout << stemp << ": " <<  "Mystery Award" << endl;
+      else if(isprime(mp[stemp]) ){
+        cout << stemp << ": " << "Minion" << endl;
+      }
+      
+     //else if(isprime(mp[stemp]) && cnt[mp[stemp]] == 1) cout << stemp << ": " << "Checked" << endl;
+      else cout << stemp << ": " << "Chocolate" << endl;
+    }
+  }
+  return 0;
+}
