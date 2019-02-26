@@ -1,0 +1,34 @@
+#include<cstdio>
+#include<iostream>
+#include<string>
+#include<vector>
+#include<cmath>
+using namespace std;
+bool isprime(int n){
+  if( n < 2) return false;
+  for(int i = 2; i <= sqrt(1.0 * n); ++i){
+    if(n % i == 0) return false;
+  }
+  return true;
+}
+int main(){
+  int n, m;
+  scanf("%d%d", &n, &m);
+  string s;
+  cin >> s;
+  int flag = 0;
+  int i, j;
+  for( i = 0; i < n; ++i){
+    int sum = 0;
+    for( j = i; j < m + i; ++j){
+      sum = sum * 10 + s[j] - '0';
+    }
+    if(isprime(sum)){
+      for( j = i; j < m + i; ++j) {cout << s[j]; flag = 1;}// 用substr和stoi来做更简洁！更好理解！
+      return 0;
+    }
+
+  }
+  if(flag == 0) printf("404");
+  return 0;
+}
