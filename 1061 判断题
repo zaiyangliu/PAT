@@ -1,0 +1,26 @@
+#include<cstdio>
+#include<iostream>
+#include<vector>
+using namespace std;
+int main(){
+  int n, m;
+  scanf("%d%d", &n, &m);
+  int ans[m];
+  int score[m];
+  for(int i = 0; i < m; ++i){
+    scanf("%d", &score[i]);
+  }
+  for(int i = 0; i < m; ++i){
+    scanf("%d", &ans[i]);
+  }
+  for(int i = 0; i < n; ++i){
+    int sum = 0;
+    for(int j = 0; j < m; ++j){
+      int temp;
+      scanf("%d", &temp);
+      if(temp == ans[j]) sum += score[j];
+    }
+    printf("%d\n", sum);
+  }
+  return 0;
+}
