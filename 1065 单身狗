@@ -1,0 +1,39 @@
+#include<iostream>
+#include<cstdio>
+#include<map>
+#include<set>
+using namespace std;
+
+int main(){
+  int n, m;
+  int a[100010];
+  scanf("%d", &n);
+  set<int> s;
+  set<int> ans;
+  map<int, int> mp;
+  for(int i = 0; i < n; ++i){
+    int x, y;
+    scanf("%d%d", &x, &y);
+    mp[x] = y;
+    mp[y]= x;
+  }
+  scanf("%d", &m);
+  for(int i = 0; i < m; ++i){
+    scanf("%d", &a[i]);
+    s.insert(a[i]);
+  }
+  for(int i = 0; i < m; ++i){
+    int temp = mp[a[i]];
+    if(s.find(temp) == s.end()){
+      ans.insert(a[i]);
+    }
+  }
+  int len = ans.size();
+  printf("%d\n", len);
+  for(auto it = ans.begin(); it != ans.end(); ++it){
+    if(it != ans.begin()) printf(" ");
+    printf("%05d", *it);
+    
+  }
+  return 0;
+}
