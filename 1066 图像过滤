@@ -1,0 +1,18 @@
+#include<iostream>
+#include<cstdio>
+using namespace std;
+int main(){
+  int m, n, a, b, ans;
+  scanf("%d%d%d%d%d", &m, &n, &a, &b, &ans);
+  for(int i = 0; i < m; ++i){
+    for(int j = 0; j < n; ++j){
+      int temp;
+      scanf("%d", &temp);
+      if(temp < a || temp > b) printf("%03d", temp);
+      else printf("%03d", ans);
+      if(j < n - 1) printf(" ");
+    }
+    printf("\n");
+  }
+  return 0;
+}
